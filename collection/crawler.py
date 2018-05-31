@@ -7,10 +7,10 @@ from bs4 import BeautifulSoup
 def crawling(url='', encoding='utf-8',
              proc=lambda html: html, # 파싱해주는 함수
              store=lambda data: data, # 데이터를 저장해주는 함수
-             error=lambda e: print('%s : %s' & (e, datetime.now()), file=sys.stderr)):
+             error=lambda e: print('%s : %s' % (e, datetime.now()), file=sys.stderr)):
     try:
         request = Request(url)
-        resp = urlopen(request)
+        resp = urlopen(request, timeout=300)
 
         try:
             receive = resp.read()
